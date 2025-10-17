@@ -2,10 +2,9 @@
 # FROM agent-zero-base:local
 FROM agent0ai/agent-zero-base:latest
 
-# Check if the argument is provided, else throw an error
-ARG BRANCH
-RUN if [ -z "$BRANCH" ]; then echo "ERROR: BRANCH is not set!" >&2; exit 1; fi
-ENV BRANCH=$BRANCH
+# Default branch (Render wasn't setting BRANCH)
+ARG BRANCH=main
+ENV BRANCH=${BRANCH}
 
 # Copy filesystem files to root
 COPY ./fs/ /
